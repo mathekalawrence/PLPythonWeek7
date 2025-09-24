@@ -7,46 +7,46 @@ import seaborn as sns
 from sklearn.datasets import load_iris
 import numpy as np
 
-# Set style for better looking plots
+# Setting styles for better looking plots
 plt.style.use('seaborn-v0_8')
 sns.set_palette("husl")
 
 def load_and_explore_dataset():
     """
-    Task 1: Load and Explore the Dataset
+    Task 1: Loading and Exploring the Dataset
     """
     print("=" * 60)
     print("TASK 1: LOADING AND EXPLORING THE DATASET")
     print("=" * 60)
     
     try:
-        # Load the Iris dataset from sklearn
+        # Loading the Iris dataset from sklearn
         iris = load_iris()
         df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
         df['species'] = pd.Categorical.from_codes(iris.target, iris.target_names)
         
-        print("✅ Dataset loaded successfully!")
+        print("Dataset loaded successfully!")
         print(f"Dataset shape: {df.shape}")
         
-        # Display first few rows
+        # Displaying the first few rows
         print("\nFirst 5 rows of the dataset:")
         print(df.head())
         
-        # Explore dataset structure
+        # Exploring the dataset structure
         print("\nDataset information:")
         print(df.info())
         
-        # Check for missing values
+        # Checking for the missing values
         print("\nMissing values per column:")
         print(df.isnull().sum())
         
-        # Since Iris dataset is clean, demonstrate cleaning process
+        # Since Iris dataset is clean, here is the cleaning process demonstration
         print("\nNo missing values found. Dataset is clean!")
         
         return df
         
     except Exception as e:
-        print(f"❌ Error loading dataset: {e}")
+        print(f" Error loading dataset: {e}")
         return None
 
 def basic_data_analysis(df):
@@ -61,21 +61,21 @@ def basic_data_analysis(df):
     print("Basic statistics for numerical columns:")
     print(df.describe())
     
-    # Group by species and compute mean for numerical columns
+    # Grouping by species and compute mean for numerical columns
     print("\nMean values grouped by species:")
     species_group = df.groupby('species').mean()
     print(species_group)
     
-    # Additional analysis: Find patterns
+    # Additional analysis: Finding patterns
     print("\n" + "-" * 40)
-    print("INTERESTING FINDINGS:")
+    print("MORE INTERESTING FINDINGS:")
     print("-" * 40)
     
-    # Find which species has the largest petals
+    # FindING which species has the largest petals
     max_petal_length = df.loc[df['petal length (cm)'].idxmax()]
     print(f"Largest petal length: {max_petal_length['petal length (cm)']} cm ({max_petal_length['species']})")
     
-    # Find which species has the smallest sepals
+    # Finding which species has the smallest sepals
     min_sepal_width = df.loc[df['sepal width (cm)'].idxmin()]
     print(f"Smallest sepal width: {min_sepal_width['sepal width (cm)']} cm ({min_sepal_width['species']})")
     
@@ -95,12 +95,12 @@ def create_visualizations(df, species_group):
     print("TASK 3: DATA VISUALIZATION")
     print("=" * 60)
     
-    # Create a figure with subplots
+    # Creating a figure with subplots
     fig, axes = plt.subplots(2, 2, figsize=(15, 12))
     fig.suptitle('Iris Flower Dataset Analysis', fontsize=16, fontweight='bold')
     
     # Visualization 1: Line chart (simulated time series)
-    # Since Iris dataset doesn't have time, we'll use index as pseudo-time
+    # Since Iris dataset doesn't have time, i'll use index as pseudo-time; challenging though!
     print("Creating Visualization 1: Line Chart (Pseudo-time series)...")
     axes[0, 0].plot(df.index[:50], df['sepal length (cm)'][:50], marker='o', label='Sepal Length', linewidth=2)
     axes[0, 0].plot(df.index[:50], df['petal length (cm)'][:50], marker='s', label='Petal Length', linewidth=2)
@@ -157,13 +157,13 @@ def create_visualizations(df, species_group):
     axes[1, 1].legend()
     axes[1, 1].grid(True, alpha=0.3)
     
-    # Adjust layout and save the figure
+    # Adjusting layout and saving the figure
     plt.tight_layout()
     plt.savefig('iris_data_analysis.png', dpi=300, bbox_inches='tight')
-    print("✅ All visualizations created successfully!")
-    print("📊 Plot saved as 'iris_data_analysis.png'")
+    print(" All visualizations created successfully!")
+    print(" Plot saved as 'iris_data_analysis.png'")
     
-    # Show the plots
+    # Showing the plots
     plt.show()
     
     # Additional advanced visualization using seaborn
@@ -180,7 +180,7 @@ def main():
     print("IRIS FLOWER DATASET ANALYSIS")
     print("=" * 60)
     
-    # Task 1: Load and explore dataset
+    # Task 1: Loading and exploring the dataset
     df = load_and_explore_dataset()
     
     if df is not None:
@@ -209,6 +209,6 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\nScript interrupted by user.")
+        print("\nScript interrupted by user maybe.")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
